@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Creative Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">PORTFOLIO</div>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#showreel">Showreel</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#services">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <img src="image.jpeg" data-aos="zoom-in">
+
+        <h1 data-aos="fade-up">Disha Kudawale</h1>
+
+        <h2 data-aos="fade-up" data-aos-delay="100">
+            Creative Video Editor & Motion Designer
+        </h2>
+
+        <p data-aos="fade-up" data-aos-delay="200">
+            I craft visually engaging stories that capture attention, evoke emotion, and create meaningful impact.
+            With a deep understanding of storytelling and visual aesthetics, I turn raw ideas into polished,
+            high-quality content that stands out. I specialize in reels, advertisements, and cinematic edits, focusing
+            on creative direction, seamless transitions, and storytelling that connects with audiences and delivers a
+            memorable experience.
+        </p>
+
+        <div class="about-highlights" data-aos="fade-up" data-aos-delay="300">
+            <span>🎬 Video Editing</span>
+            <span>✨ Motion Graphics</span>
+            <span>🎨 Graphic Design</span>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <h1 data-aos="fade-up">My Skills</h1>
+
+        <div class="skills-container">
+            <div data-aos="fade-up">🎬 Premiere Pro</div>
+            <div data-aos="fade-up" data-aos-delay="100">✨ After Effects</div>
+            <div data-aos="fade-up" data-aos-delay="200">🎨 Illustrator</div>
+            <div data-aos="fade-up" data-aos-delay="300">🖌 Photoshop</div>
+            <div data-aos="fade-up" data-aos-delay="400">📱 UI/UX Design</div>
+        </div>
+    </section>
+
+    <!-- SHOWREEL -->
+    <section id="showreel">
+        <h1 data-aos="fade-up">SHOWREEL</h1>
+
+        <p data-aos="fade-up" data-aos-delay="100">
+            A collection of my best edits and creative storytelling.
+        </p>
+
+        <div class="video-container">
+            <video controls playsinline data-aos="zoom-in">
+                <source src="showreel1.mp4">
+            </video>
+
+            <video controls playsinline data-aos="zoom-in" data-aos-delay="200">
+                <source src="showreel2.mp4">
+            </video>
+        </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume">
+        <h1 data-aos="fade-up">Resume</h1>
+
+        <p data-aos="fade-up">View or download my resume.</p>
+
+        <a href="resume.pdf" target="_blank" class="btn">View Resume</a>
+        <a href="resume.pdf" download class="btn">Download Resume</a>
+    </section>
+
+    <!-- WHAT I DO -->
+    <section id="services">
+        <h1 data-aos="fade-up">My Work</h1>
+
+        <p data-aos="fade-up">
+            Explore my creative projects across editing, motion, and design.
+        </p>
+
+        <div class="services-container">
+
+            <div class="service" onclick="openVideoEdit()">
+                <h3>🎬 Video Editing</h3>
+                <p>Reels, ads, cinematic edits</p>
+            </div>
+
+            <div class="service" onclick="openMotion()">
+                <h3>✨ Motion Graphics</h3>
+                <p>Animations & storytelling</p>
+            </div>
+
+            <div class="service" onclick="openGallery()">
+                <h3>🎨 Graphic Design</h3>
+                <p>Posters & branding</p>
+            </div>
+
+            <div class="service" onclick="openIllustration()">
+                <h3>✏ Illustration</h3>
+                <p>Custom artwork and visual creativity.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h1>Contact Me</h1>
+
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="social-links">
+            <p>Connect with me:</p>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Email</a>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Disha Kudawale</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="script.js"></script>
+
+
+    <!-- Poster Viewer -->
+    <div id="posterViewer" class="poster-viewer">
+
+        <span class="close" onclick="closeGallery()">&times;</span>
+
+        <img id="posterImg" src="posters/poster2.png">
+
+        <!-- Buttons -->
+        <button class="prev" onclick="prevImage()">❮</button>
+        <button class="next" onclick="nextImage()">❯</button>
+
+    </div>
+
+    </div>
+    <div class="service" data-aos="fade-up" data-aos-delay="200" onclick="openGallery()">
+        <h3>Graphic Design</h3>
+        <p>Modern designs for social media, branding, and marketing.</p>
+    </div>
+
+
+    <!-- Illustration Viewer -->
+    <div id="illustrationViewer" class="poster-viewer">
+
+        <span class="close" onclick="closeIllustration()">&times;</span>
+
+        <!-- Image -->
+        <img id="illusImg" src="" style="display:none;">
+
+        <!-- Video -->
+        <video id="illusVideo" controls
+            style="display:none; max-width:80%; max-height:80%; border-radius:10px;"></video>
+
+        <!-- Buttons -->
+        <button class="prev" onclick="prevIllus()">❮</button>
+        <button class="next" onclick="nextIllus()">❯</button>
+
+    </div>
+
+
+    <!-- Video Editing Viewer -->
+    <div id="videoViewer" class="poster-viewer">
+        <span class="close" onclick="closeVideoEdit()">&times;</span>
+
+        <video id="videoEditPlayer" controls style="max-width:80%; max-height:80%; border-radius:10px;"></video>
+
+        <button class="prev" onclick="prevVideo()">❮</button>
+        <button class="next" onclick="nextVideo()">❯</button>
+    </div>
+
+
+    <!-- Motion Graphics Viewer -->
+    <div id="motionViewer" class="poster-viewer">
+        <span class="close" onclick="closeMotion()">&times;</span>
+
+        <video id="motionPlayer" controls style="max-width:80%; max-height:80%; border-radius:10px;"></video>
+
+        <button class="prev" onclick="prevMotion()">❮</button>
+        <button class="next" onclick="nextMotion()">❯</button>
+    </div>
+</body>
+
+</html>
