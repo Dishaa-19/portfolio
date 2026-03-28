@@ -293,7 +293,7 @@ padding:15px 20px;
 
 /* show hamburger */
 .menu-toggle{
-display:block;
+display:none;
 }
 
 /* hide menu */
