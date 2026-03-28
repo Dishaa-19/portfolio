@@ -1,16 +1,100 @@
+// =======================
+// 1. LOADING SCREEN
+// =======================
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.getElementById("loader").classList.add("hidden");
+    }, 1800);
+});
+
+
+// =======================
+// 3. ACTIVE NAV HIGHLIGHT ON SCROLL
+// =======================
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+
+    // 4. BACK TO TOP visibility
+    const btn = document.getElementById("backToTop");
+    if (window.scrollY > 400) {
+        btn.classList.add("visible");
+    } else {
+        btn.classList.remove("visible");
+    }
+});
+
+// 4. BACK TO TOP scroll function
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+
+// =======================
+// 10. KEYBOARD SUPPORT FOR MODALS
+// =======================
+document.addEventListener("keydown", (e) => {
+
+    // Escape — close any open viewer
+    if (e.key === "Escape") {
+        if (document.getElementById("posterViewer").style.display === "flex")       closeGallery();
+        if (document.getElementById("illustrationViewer").style.display === "flex") closeIllustration();
+        if (document.getElementById("videoViewer").style.display === "flex")        closeVideoEdit();
+        if (document.getElementById("motionViewer").style.display === "flex")       closeMotion();
+    }
+
+    // Arrow keys — navigate inside open viewer
+    if (e.key === "ArrowRight") {
+        if (document.getElementById("posterViewer").style.display === "flex")       nextImage();
+        if (document.getElementById("illustrationViewer").style.display === "flex") nextIllus();
+        if (document.getElementById("videoViewer").style.display === "flex")        nextVideo();
+        if (document.getElementById("motionViewer").style.display === "flex")       nextMotion();
+    }
+
+    if (e.key === "ArrowLeft") {
+        if (document.getElementById("posterViewer").style.display === "flex")       prevImage();
+        if (document.getElementById("illustrationViewer").style.display === "flex") prevIllus();
+        if (document.getElementById("videoViewer").style.display === "flex")        prevVideo();
+        if (document.getElementById("motionViewer").style.display === "flex")       prevMotion();
+    }
+});
+
+
 // AOS Animation
 AOS.init({
     duration: 1200,
     once: false
 });
 
-// Smooth Scroll
+// Smooth Scroll + Close mobile menu on nav link click
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+
+        // Close mobile menu
+        document.getElementById("nav-links").classList.remove("active");
+
+        // Scroll to section
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
     });
 });
 
@@ -298,17 +382,4 @@ function toggleMenu() {
     document.getElementById("nav-links").classList.toggle("active");
 }
 
-document.querySelectorAll('#nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        document.getElementById("nav-links").classList.remove("active");
-    });
-});
-// Close menu when clicking outside of it on mobile
-document.addEventListener("click", function(e) {
-    const nav = document.getElementById("nav-links");
-    const toggle = document.querySelector(".menu-toggle");
 
-    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-        nav.classList.remove("active");
-    }
-});

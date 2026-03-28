@@ -15,6 +15,15 @@
 
 <body>
 
+    <!-- LOADING SCREEN -->
+    <div id="loader">
+        <div class="loader-text">DK</div>
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button id="backToTop" onclick="scrollToTop()">↑</button>
+
    <nav>
     <div class="logo">PORTFOLIO</div>
 
@@ -32,7 +41,7 @@
 
     <!-- ABOUT -->
     <section id="about">
-        <img src="image.jpeg" data-aos="zoom-in">
+        <img src="image.jpeg" loading="lazy" data-aos="zoom-in">
 
         <h1 data-aos="fade-up">Disha Kudawale</h1>
 
@@ -77,11 +86,11 @@
         </p>
 
         <div class="video-container">
-            <video controls playsinline data-aos="zoom-in">
+            <video controls playsinline preload="none" data-aos="zoom-in">
                 <source src="showreel1.mp4">
             </video>
 
-            <video controls playsinline data-aos="zoom-in" data-aos-delay="200">
+            <video controls playsinline preload="none" data-aos="zoom-in" data-aos-delay="200">
                 <source src="showreel2.mp4">
             </video>
         </div>
