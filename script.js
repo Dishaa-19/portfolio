@@ -14,7 +14,7 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-// 🔥 FORCE AUDIO ENABLE
+// Force Audio Enable on showreel videos
 const videos = document.querySelectorAll("video");
 
 videos.forEach(video => {
@@ -33,329 +33,268 @@ videos.forEach(video => {
 
 
 // =======================
-// 🎨 POSTER SYSTEM
+// POSTER / GRAPHIC DESIGN
 // =======================
 
 const posters = [
-"posters/poster1.jpeg",
-"posters/poster2.png",
-"posters/poster3.jpeg",
-"posters/poster4.jpeg",
-"posters/poster5.jpeg",
-"posters/poster6.jpeg",
-"posters/poster7.jpeg",
-"posters/poster8.jpeg",
-"posters/poster9.jpeg",
-"posters/poster10.jpeg",
-"posters/poster11.jpeg",
-"posters/poster12.png"
+    "posters/poster1.jpeg",
+    "posters/poster2.png",
+    "posters/poster3.jpeg",
+    "posters/poster4.jpeg",
+    "posters/poster5.jpeg",
+    "posters/poster6.jpeg",
+    "posters/poster7.jpeg",
+    "posters/poster8.jpeg",
+    "posters/poster9.jpeg",
+    "posters/poster10.jpeg",
+    "posters/poster11.jpeg",
+    "posters/poster12.png"
 ];
 
 let currentIndex = 0;
 
-function openGallery(){
-    document.getElementById("posterViewer").style.display = "flex";
+function openGallery() {
+    currentIndex = 0;
     document.getElementById("posterImg").src = posters[currentIndex];
+    document.getElementById("posterViewer").style.display = "flex";
 }
 
-function closeGallery(){
+function closeGallery() {
     document.getElementById("posterViewer").style.display = "none";
 }
 
-function nextImage(){
+function nextImage() {
     currentIndex = (currentIndex + 1) % posters.length;
     document.getElementById("posterImg").src = posters[currentIndex];
 }
 
-function prevImage(){
+function prevImage() {
     currentIndex = (currentIndex - 1 + posters.length) % posters.length;
     document.getElementById("posterImg").src = posters[currentIndex];
 }
 
 
 // =======================
-// 🎬 ILLUSTRATION SYSTEM
+// ILLUSTRATION SYSTEM
 // =======================
 
 const illustrations = [
-
-    // 🎥 Videos
-    {type:"video", src:"illustration/video1.mp4"},
-    {type:"video", src:"illustration/video2.mp4"},
-    {type:"video", src:"illustration/video3.mp4"},
-    {type:"video", src:"illustration/video4.mp4"},
-    {type:"video", src:"illustration/video5.mp4"},
-    {type:"video", src:"illustration/video6.mp4"},
-
-    // 🖼️ Images
-    {type:"img", src:"illustration/illus1.jpeg"},
-    {type:"img", src:"illustration/illus2.png"},
-    {type:"img", src:"illustration/illus3.jpeg"},
-    {type:"img", src:"illustration/illus4.jpeg"},
-    {type:"img", src:"illustration/illus5.jpeg"},
-    {type:"img", src:"illustration/illus6.png"},
-    {type:"img", src:"illustration/illus7.png"},
-    {type:"img", src:"illustration/illus8.jpeg"},
-    {type:"img", src:"illustration/illus9.jpeg"},
-    {type:"img", src:"illustration/illus10.png"},
-    {type:"img", src:"illustration/illus11.jpeg"},
-    {type:"img", src:"illustration/illus12.png"}
+    { type: "video", src: "illustration/video1.mp4" },
+    { type: "video", src: "illustration/video2.mp4" },
+    { type: "video", src: "illustration/video3.mp4" },
+    { type: "video", src: "illustration/video4.mp4" },
+    { type: "video", src: "illustration/video5.mp4" },
+    { type: "video", src: "illustration/video6.mp4" },
+    { type: "img", src: "illustration/illus1.jpeg" },
+    { type: "img", src: "illustration/illus2.png" },
+    { type: "img", src: "illustration/illus3.jpeg" },
+    { type: "img", src: "illustration/illus4.jpeg" },
+    { type: "img", src: "illustration/illus5.jpeg" },
+    { type: "img", src: "illustration/illus6.png" },
+    { type: "img", src: "illustration/illus7.png" },
+    { type: "img", src: "illustration/illus8.jpeg" },
+    { type: "img", src: "illustration/illus9.jpeg" },
+    { type: "img", src: "illustration/illus10.png" },
+    { type: "img", src: "illustration/illus11.jpeg" },
+    { type: "img", src: "illustration/illus12.png" }
 ];
 
 let illusIndex = 0;
 
-function showIllus(){
+function showIllus() {
     const item = illustrations[illusIndex];
-
     const img = document.getElementById("illusImg");
     const video = document.getElementById("illusVideo");
 
     img.style.display = "none";
     video.style.display = "none";
-
     video.pause();
     video.currentTime = 0;
 
-    if(item.type === "img"){
+    if (item.type === "img") {
         img.src = item.src;
         img.style.display = "block";
-    }else{
+    } else {
         video.src = item.src;
-        video.load(); // 🔥 IMPORTANT
+        video.load();
         video.style.display = "block";
     }
 }
 
-function openIllustration(){
+function openIllustration() {
+    illusIndex = 0;
     document.getElementById("illustrationViewer").style.display = "flex";
     showIllus();
 }
 
-function closeIllustration(){
+function closeIllustration() {
+    const video = document.getElementById("illusVideo");
+    video.pause();
     document.getElementById("illustrationViewer").style.display = "none";
 }
 
-function nextIllus(){
+function nextIllus() {
     illusIndex = (illusIndex + 1) % illustrations.length;
     showIllus();
 }
 
-function prevIllus(){
+function prevIllus() {
     illusIndex = (illusIndex - 1 + illustrations.length) % illustrations.length;
     showIllus();
 }
 
 
 // =======================
-// 📱 SWIPE SUPPORT (FIXED)
+// VIDEO EDITING SYSTEM
 // =======================
 
-document.addEventListener("DOMContentLoaded", function(){
-
-    // Poster swipe
-    const img = document.getElementById("posterImg");
-
-    if(img){
-        let startX = 0;
-
-        img.addEventListener("touchstart", e => {
-            startX = e.touches[0].clientX;
-        });
-
-        img.addEventListener("touchend", e => {
-            let endX = e.changedTouches[0].clientX;
-
-            if(startX - endX > 50){
-                nextImage();
-            }
-            else if(endX - startX > 50){
-                prevImage();
-            }
-        });
-    }
-
-    // Illustration swipe
-    const illusArea = document.getElementById("illustrationViewer");
-
-    if(illusArea){
-        let startX2 = 0;
-
-        illusArea.addEventListener("touchstart", e => {
-            startX2 = e.touches[0].clientX;
-        });
-
-        illusArea.addEventListener("touchend", e => {
-            let endX2 = e.changedTouches[0].clientX;
-
-            if(startX2 - endX2 > 50){
-                nextIllus();
-            }
-            else if(endX2 - startX2 > 50){
-                prevIllus();
-            }
-        });
-    }
-
-});
 const videoEdits = [
-"videoEditing/video1.mp4",
-"videoEditing/video2.mp4",
-"videoEditing/video3.mp4",
-"videoEditing/video4.mp4",
-"videoEditing/video5.mp4",
-"videoEditing/video6.mp4",
-"videoEditing/video7.mp4",
-"videoEditing/video8.mp4",
-"videoEditing/video9.mp4"
+    "videoEditing/video1.mp4",
+    "videoEditing/video2.mp4",
+    "videoEditing/video3.mp4",
+    "videoEditing/video4.mp4",
+    "videoEditing/video5.mp4",
+    "videoEditing/video6.mp4",
+    "videoEditing/video7.mp4",
+    "videoEditing/video8.mp4",
+    "videoEditing/video9.mp4"
 ];
 
 let videoIndex = 0;
 
-function showVideoEdit(){
+function showVideoEdit() {
     const player = document.getElementById("videoEditPlayer");
-
     player.pause();
     player.src = videoEdits[videoIndex];
     player.load();
 }
 
-function openVideoEdit(){
+function openVideoEdit() {
+    videoIndex = 0;
     document.getElementById("videoViewer").style.display = "flex";
     showVideoEdit();
 }
 
-function closeVideoEdit(){
+function closeVideoEdit() {
+    const player = document.getElementById("videoEditPlayer");
+    player.pause();
     document.getElementById("videoViewer").style.display = "none";
 }
 
-function nextVideo(){
+function nextVideo() {
     videoIndex = (videoIndex + 1) % videoEdits.length;
     showVideoEdit();
 }
 
-function prevVideo(){
+function prevVideo() {
     videoIndex = (videoIndex - 1 + videoEdits.length) % videoEdits.length;
     showVideoEdit();
 }
+
+
+// =======================
+// MOTION GRAPHICS SYSTEM
+// =======================
+
 const motionVideos = [
-"motion/video1.mp4",
-"motion/video2.mp4",
-"motion/video3.mp4",
-"motion/video4.mp4",
-"motion/video5.mp4",
-"motion/video6.mp4",
-"motion/video7.mp4",
-"motion/video8.mp4",
-"motion/video9.mp4",
-"motion/video10.mp4"
+    "motion/video1.mp4",
+    "motion/video2.mp4",
+    "motion/video3.mp4",
+    "motion/video4.mp4",
+    "motion/video5.mp4",
+    "motion/video6.mp4",
+    "motion/video7.mp4",
+    "motion/video8.mp4",
+    "motion/video9.mp4",
+    "motion/video10.mp4"
 ];
 
 let motionIndex = 0;
 
-function showMotion(){
+function showMotion() {
     const player = document.getElementById("motionPlayer");
-
     player.pause();
     player.src = motionVideos[motionIndex];
     player.load();
 }
 
-function openMotion(){
+function openMotion() {
+    motionIndex = 0;
     document.getElementById("motionViewer").style.display = "flex";
     showMotion();
 }
 
-function closeMotion(){
+function closeMotion() {
+    const player = document.getElementById("motionPlayer");
+    player.pause();
     document.getElementById("motionViewer").style.display = "none";
 }
 
-function nextMotion(){
+function nextMotion() {
     motionIndex = (motionIndex + 1) % motionVideos.length;
     showMotion();
 }
 
-function prevMotion(){
+function prevMotion() {
     motionIndex = (motionIndex - 1 + motionVideos.length) % motionVideos.length;
     showMotion();
 }
-document.addEventListener("DOMContentLoaded", function(){
 
-// Video Editing swipe
-const videoArea = document.getElementById("videoViewer");
 
-if(videoArea){
-let startX = 0;
+// =======================
+// SWIPE SUPPORT (single, clean version)
+// =======================
 
-videoArea.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
+document.addEventListener("DOMContentLoaded", function () {
+
+    // --- Poster swipe ---
+    const posterViewer = document.getElementById("posterViewer");
+    let pStartX = 0;
+    posterViewer.addEventListener("touchstart", e => { pStartX = e.touches[0].clientX; });
+    posterViewer.addEventListener("touchend", e => {
+        const diff = pStartX - e.changedTouches[0].clientX;
+        if (diff > 50) nextImage();
+        else if (diff < -50) prevImage();
+    });
+
+    // --- Illustration swipe ---
+    const illusViewer = document.getElementById("illustrationViewer");
+    let iStartX = 0;
+    illusViewer.addEventListener("touchstart", e => { iStartX = e.touches[0].clientX; });
+    illusViewer.addEventListener("touchend", e => {
+        const diff = iStartX - e.changedTouches[0].clientX;
+        if (diff > 50) nextIllus();
+        else if (diff < -50) prevIllus();
+    });
+
+    // --- Video Editing swipe ---
+    const videoViewer = document.getElementById("videoViewer");
+    let vStartX = 0;
+    videoViewer.addEventListener("touchstart", e => { vStartX = e.touches[0].clientX; });
+    videoViewer.addEventListener("touchend", e => {
+        const diff = vStartX - e.changedTouches[0].clientX;
+        if (diff > 50) nextVideo();
+        else if (diff < -50) prevVideo();
+    });
+
+    // --- Motion swipe ---
+    const motionViewer = document.getElementById("motionViewer");
+    let mStartX = 0;
+    motionViewer.addEventListener("touchstart", e => { mStartX = e.touches[0].clientX; });
+    motionViewer.addEventListener("touchend", e => {
+        const diff = mStartX - e.changedTouches[0].clientX;
+        if (diff > 50) nextMotion();
+        else if (diff < -50) prevMotion();
+    });
+
 });
 
-videoArea.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
 
-    if(startX - endX > 50){
-        nextVideo();
-    }
-    else if(endX - startX > 50){
-        prevVideo();
-    }
-});
-}
+// =======================
+// HAMBURGER MENU
+// =======================
 
-// Motion swipe
-const motionArea = document.getElementById("motionViewer");
-
-if(motionArea){
-let startX2 = 0;
-
-motionArea.addEventListener("touchstart", e => {
-    startX2 = e.touches[0].clientX;
-});
-
-motionArea.addEventListener("touchend", e => {
-    let endX2 = e.changedTouches[0].clientX;
-
-    if(startX2 - endX2 > 50){
-        nextMotion();
-    }
-    else if(endX2 - startX2 > 50){
-        prevMotion();
-    }
-});
-}
-
-});
-let startX = 0;
-
-document.getElementById("posterViewer").addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-});
-
-document.getElementById("posterViewer").addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-
-    if(startX - endX > 50){
-        nextImage();
-    } else if(endX - startX > 50){
-        prevImage();
-    }
-});
-let startX2 = 0;
-
-document.getElementById("illustrationViewer").addEventListener("touchstart", e => {
-    startX2 = e.touches[0].clientX;
-});
-
-document.getElementById("illustrationViewer").addEventListener("touchend", e => {
-    let endX2 = e.changedTouches[0].clientX;
-
-    if(startX2 - endX2 > 50){
-        nextIllus();
-    } else if(endX2 - startX2 > 50){
-        prevIllus();
-    }
-});
-function toggleMenu(){
+function toggleMenu() {
     document.getElementById("nav-links").classList.toggle("active");
 }
 
@@ -363,4 +302,13 @@ document.querySelectorAll('#nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         document.getElementById("nav-links").classList.remove("active");
     });
+});
+// Close menu when clicking outside of it on mobile
+document.addEventListener("click", function(e) {
+    const nav = document.getElementById("nav-links");
+    const toggle = document.querySelector(".menu-toggle");
+
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove("active");
+    }
 });
