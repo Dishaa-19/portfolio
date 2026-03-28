@@ -355,3 +355,12 @@ document.getElementById("illustrationViewer").addEventListener("touchend", e => 
         prevIllus();
     }
 });
+function toggleMenu(){
+    document.getElementById("nav-links").classList.toggle("active");
+}
+
+document.querySelectorAll('#nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById("nav-links").classList.remove("active");
+    });
+});
