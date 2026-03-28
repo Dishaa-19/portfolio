@@ -325,3 +325,33 @@ motionArea.addEventListener("touchend", e => {
 }
 
 });
+let startX = 0;
+
+document.getElementById("posterViewer").addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+document.getElementById("posterViewer").addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+
+    if(startX - endX > 50){
+        nextImage();
+    } else if(endX - startX > 50){
+        prevImage();
+    }
+});
+let startX2 = 0;
+
+document.getElementById("illustrationViewer").addEventListener("touchstart", e => {
+    startX2 = e.touches[0].clientX;
+});
+
+document.getElementById("illustrationViewer").addEventListener("touchend", e => {
+    let endX2 = e.changedTouches[0].clientX;
+
+    if(startX2 - endX2 > 50){
+        nextIllus();
+    } else if(endX2 - startX2 > 50){
+        prevIllus();
+    }
+});
